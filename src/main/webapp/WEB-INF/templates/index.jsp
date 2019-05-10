@@ -44,7 +44,7 @@
             <h5 class="card-title">Zadanie 3</h5>
             <button type="button" id="showDiv" class="btn btn-primary btn-block">Pokaż listę tweetów</button>
             <div class="hiddenDiv">
-                <p><a href="/displayAllTweets" class="btn btn-danger btn-block">Pokaż listę wszystkich tweetów</a></p>
+                <p><a href="/displayAllTweet" class="btn btn-danger btn-block">Pokaż listę wszystkich tweetów</a></p>
                 <form method="post" action="/tweetList">
                     <div class="md-form">
                         <p><select name="id" class="form-control">

@@ -32,31 +32,36 @@ public class TweetController {
         return "usersTweets";
     }
 
-    @GetMapping("/displayAllTweets")
+    @GetMapping("/displayAllTweet")
     public String displayAllTweets(Model model){
-        List<Tweet> tweets = tweetRepo.findAll();
-        model.addAttribute("tweets", tweets);
+        model.addAttribute("tweet", new Tweet());
         return "displayAllTweets";
     }
 
-    @GetMapping("/user/search_tweets/{text}")
-    public String showTweetsStartingWith(@PathVariable String text, Model model) {
-        List<Tweet> tweets = tweetRepo.findTweetsByTweetTextIsStartingWithOrderByCreatedDesc(text);
-        model.addAttribute("tweets", tweets);
-        return "tweetBegginsAt";
-    }
 
-    @GetMapping("/tweet/add")
+   /* @GetMapping("/tweet/add")
     public String tweetForm(Model model) {
         List<User> users = userRepo.findAll();
         model.addAttribute("users", users);
         model.addAttribute("tweet", new Tweet());
         return "tweetForm";
-    }
+    }*/
 
     @PostMapping("/tweet/add")
     public String saveTweet(@ModelAttribute Tweet tweet) {
         tweetRepo.save(tweet);
-        return "tweetFormSucces";
+        return "redirect:/displayAllTweet";
+        }
+
+    @ModelAttribute("allTweets")
+    public List<Tweet> getAllTweets(){
+        List<Tweet> allTweets = tweetRepo.findAll();
+        return allTweets;
+    }
+
+    @ModelAttribute("allUsers")
+    public List<User> getAllUsers(){
+        List<User> allUsers = userRepo.findAll();
+        return allUsers;
     }
 }
